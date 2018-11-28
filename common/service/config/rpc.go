@@ -86,8 +86,16 @@ func (d *RPCFactory) CreateDispatcherForOutbound(
 }
 
 func (d *RPCFactory) getListenIP() net.IP {
+	if d.config.BindOnLocalHost && d.config.BindOnAllInterfaces {
+		d.logger.Fatalf("ListenIP failed, BindOnLocalHost and BindOnAllInterfaces is mutually exclussive")
+	}
+
 	if d.config.BindOnLocalHost {
 		return net.IPv4(127, 0, 0, 1)
+	}
+
+	if d.config.BindOnAllInterfaces {
+		return net.IPv4(0, 0, 0, 0)
 	}
 	ip, err := ListenIP()
 	if err != nil {

@@ -69,6 +69,8 @@ type (
 		Port int `yaml:"port"`
 		// BindOnLocalHost is true if localhost is the bind address
 		BindOnLocalHost bool `yaml:"bindOnLocalHost"`
+		// BindOnLocalHost is true if localhost is the bind address
+		BindOnAllInterfaces bool `yaml:"bindOnAllInterfaces"`
 		// DisableLogging disables all logging for rpc
 		DisableLogging bool `yaml:"disableLogging"`
 		// LogLevel is the desired log level
